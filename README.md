@@ -22,14 +22,14 @@ The Zillow data range from the April 1996 to April 2018 of month median home sal
 
 There are 57 zip codes in the area with 3 multiple zip code municipalities. Knoxville is the most with 14, and smaller cities in neighboring county make up the other two, Maryville (3), and Lenoir City (2). Maryville, the next largest, is located south of Knoxville and close to the airport and has a small liberal arts college that bares its name. Lenoir City is southwest and has a wide geography area, but it is quite narrow because city expansion along state route TN-321, a main thru fare with many businesses. The rest (38) have only one zip code. 
 
-<img src='~/../images/Muni.png'>
+<img src='images/Muni.png'>
 
 In 2017, the top ten zip code by number sales (597–997 sales) were spread among four municipalities, Knoxville with seven of the top zip codes and Maryville, Oak Ridge, and Farragut with one each. Knoxville is by far the largest city in the area. Oak Ridge and Farragut are both suburbs west of Knoxville. Farragut is an affluent town in the same county as Knoxville (Knox County). Oak Ridge is farther northwest of Knoxville, and boasts large federal nuclear facilities and national laboratory that provides the major industry for the city and is important for the entire area.
 
 Looking at pricing trends, most the zip codes follow the same general pattern. There is steady growth from the mid 1990's to the 2007–2008 recession where most pricing decreased . A pricing trough developed post 2009 and into the early 2010's followed by a return to steady growth to the present. 
 
 </details>
-<img src='~/../images/Zip_Map.png'>
+<img src='images/Zip_Map.png'>
 
 <details><summary>Recession</summary>
 
@@ -47,16 +47,16 @@ All the zip codes experienced a drop in median home price ranging from 6.8% to 3
 Below is the projected sales for the top zip  code with ROI's ranging from 
 33.9% to 51.2% annual increase.
 
-<img src='~/../images/Table_Zip.png'>Table_Zip
+<img src='images/Table_Zip.png'>Table_Zip
 
 
-<img src='~/../images/Price_Projection.png'>
+<img src='images/Price_Projection.png'>
 
 After looking at the map of the zip codes and with my knowledge of the area, I noticed that they we are in rural areas. The areas were all on the outskirt in the city centers. As you can see below the select zip code had small numbers of annual sales. 
 
 <img src='~/../images/ROI_Sales.png'>
 </details>
-<img src='~/../images/Top_5_Zip_Code_Knoxville.png'>
+<img src='images/Top_5_Zip_Code_Knoxville.png'>
 
 
 I decided to look at the areas to with more than 200 sales in 2017 as threshold. This way I could mark out more urban and suburban area for investment.
@@ -66,15 +66,15 @@ I decided to look at the areas to with more than 200 sales in 2017 as threshold.
 Below is the projected sales for the top zip  code with ROI's ranging from 
 13.1% to 20.1%.
 
-<img src='~/../images/Table_Zip200.png'>
+<img src='images/Table_Zip200.png'>
 
-<img src='~/../images/Price_Projection200.png'>
+<img src='images/Price_Projection200.png'>
 
 Zip codes selected were closer to populated areas. The area sales where spread out among the other zip code sales totals.
 
-<img src='~/../images/ROI_Sales200.png'>
+<img src='images/ROI_Sales200.png'>
 </details>
-<img src='~/../images/Top_5_Zip_Code_Knoxville_Under_200.png'>
+<img src='images/Top_5_Zip_Code_Knoxville_Under_200.png'>
 
 ### Recommendation
 
@@ -86,7 +86,3 @@ Additional analysis can be. In particular looking at smaller geographical area t
     <li>Zoning Maps</li>
     <li>Neighborhood Divisions</li>
 </ul>
-
-
-
-
