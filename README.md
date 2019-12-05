@@ -16,7 +16,7 @@ The examined area is the Knoxville, TN, moderate sized city in eastern Tennessee
 
 The Zillow data range from the April 1996 to April 2018 of month median home sales form every zip code in the country.   I also supplimented with additional data from Zillow month sales data as well. Filtering by metro area, I analyze the zip code associated with Knoxville. See a glimpse of that data in the table below.
 
-<img src='images/DF_.png'/>
+![](images/DF_.png)
 
 <details><summary>Area Analysis</summary>
 
