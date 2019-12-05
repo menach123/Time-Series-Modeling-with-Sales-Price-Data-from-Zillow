@@ -1,100 +1,506 @@
 
-# Module 4 -  Final Project Specifications
 
-## Introduction
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
-In this lesson, we'll review all the guidelines and specifications for the final project for Module 4.
-
-## Objectives
-
-* Understand all required aspects of the Final Project for Module 4
-* Understand all required deliverables
-* Understand what constitutes a successful project
-
-### Final Project Summary
-
-Another module down--you're absolutely crushing it! For this project, you'll get to flex your **_Time-Series_** muscles!
-
-<img src='https://raw.githubusercontent.com/learn-co-curriculum/dsc-mod-4-project/master/images/timegif.gif'>
-
-For this module's final project, we're going to put your newfound **_Time Series Analysis_** skills to the test. You will be forecasting real estate prices of various zipcodes using data from [Zillow](https://www.zillow.com/research/data/). However, this won't be as straightforward as just running a time-series analysis--you're going to have to make some data-driven decisions and think critically along the way!
-
-### The Project
-
-For this project, you will be acting as a consultant for a fictional real-estate investment firm. The firm has asked you what seems like a simple question:
-
-> what are the top 5 best zipcodes for us to invest in?
-
-This may seem like a simple question at first glance, but there's more than a little ambiguity here that you'll have to think through in order to provide a solid recommendation. Should your recommendation be focused on profit margins only? What about risk? What sort of time horizon are you predicting against?  Your recommendation will need to detail your rationale and answer any sort of lingering questions like these in order to demonstrate how you define "best".
-
-As mentioned previously, the data you'll be working with comes from the [Zillow Research Page](https://www.zillow.com/research/data/). However, there are many options on that page, and making sure you have exactly what you need can be a bit confusing. For simplicity's sake, we have already provided the dataset for you in this repo--you will find it in the file `zillow_data.csv`.
-
-## The Deliverables
-
-The goal of this project is to have you complete a very common real-world task in regard to Time-Series Modeling. However, real world problems often come with a significant degree of ambiguity, which requires you to use your knowledge of statistics and data science to think critically about and answer. While the main task in this project is Time-Series Modeling, that isn't the overall goal--it is important to understand that Time-Series Modeling is a tool in your toolbox, and the forecasts it provides you are what you'll use to answer important questions.
-
-In short, to pass this project, demonstrating the quality and thoughtfulness of your overall recommendation is at least as important as successfully building a Time-Series model!
-
-Online students should complete the following 4 deliverables for this project:
-
-* A well-documented **_Jupyter Notebook_** containing any code you've written for this project (use the notebook in this repo, `mod_4_starter_notebook.ipynb`). This work will need to be pushed to your GitHub repository in order to submit your project.
-* An organized **README.md** file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository.
-* A **_[Blog post](https://github.com/learn-co-curriculum/dsc-welcome-blogging)_**.
-* An **_'Executive Summary' PowerPoint Presentation_** that explains your rationale and methodology for determining the best zipcodes for investment.
-
-Note: On-campus students may have different deliverables, please speak with your instructor.
-
-### Jupyter Notebook Must-Haves
-
-For this project, you will be provided with a jupyter notebook containing some starter code. If you inspect the zillow dataset file, you'll notice that the datetimes for each sale are the actual column names--this is a format you probably haven't seen before. To ensure that you're not blocked by preprocessing, we've provided some helper functions to help simplify getting the data into the correct format. You're not required to use this notebook or keep it in its current format, but we strongly recommend you consider making use of the helper functions so you can spend your time working on the parts of the project that matter.
-
-#### Organization/Code Cleanliness
-
-The notebook should be well organized, easy to follow, and code is modularized and commented where appropriate.
-
-* Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code. All functions have docstrings that act as professional-quality documentation.
-* The notebook is written to technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.
-* Data visualizations you create should be clearly labeled and contextualized--that is, they fit with the surrounding code or problems you're trying to solve. No dropping data visualizations randomly around your notebook without any context!
-
-#### Findings
-
-Your notebook should briefly mention the metrics you have defined as "best", so that any readers understand what technical metrics you are trying to optimize for (for instance, risk vs profitability, ROI yield, etc.). You do **not** need to explain or defend your your choices in the notebook--the blog post and executive summary presentation are both better suited to that sort of content. However, the notebook should provide enough context about your definition for "best investment" so that they understand what the code you are writing is trying to solve.
-
-#### Visualizations
-
-Time-Series Analysis is an area of data science that lends itself well to intuitive data visualizations. Whereas we may not be able to visualize the best choice in a classification or clustering problem with a high-dimensional dataset, that isn't an issue with Time Series data. As such, **_any findings worth mentioning in this problem are probably also worth visualizing_**. Your notebook should make use of data visualizations as appropriate to make your findings obvious to any readers.
-
-Also, remember that if a visualization is worth creating, then it's also worth taking the extra few minutes to make sure that it is easily understandable and well-formatted. When creating visualizations, make sure that they have:
-
-* A title
-* Clearly labeled X and Y axes, with appropriate scale for each
-* A legend, when necessary
-* No overlapping text that makes it hard to read
-* An intelligent use of color--multiple lines should have different colors and/or symbols to make them easily differentiable to the eye
-* An appropriate amount of information--avoid creating graphs that are "too busy"--for instance, don't create a line graph with 25 different lines on it
-
-<center><img src='images/bad-graph-1.png' height=100% width=100%>
-There's just too much going on in this graph for it to be readable--don't make the same mistake! (<a href='http://genywealth.com/wp-content/uploads/2010/03/line-graph.php_.png'>Source</a>)</center>
-
-### Blog Post Must-Haves
-
-Refer back to the [Blogging Guidelines](https://github.com/learn-co-curriculum/dsc-welcome-blogging) for the technical requirements and blog ideas.
+th = np.linspace(0, 2*np.pi, 128)
 
 
-### Executive Summary Must-Haves
+def demo(sty):
+    mpl.style.use(sty)
+    fig, ax = plt.subplots(figsize=(3, 3))
 
-Your presentation should:
+    ax.set_title('style: {!r}'.format(sty), color='C1')
 
-Contain between 5-10 professional quality slides detailing:
+    ax.plot(th, np.cos(th), 'C1', label='C1')
+    ax.plot(th, np.sin(th), 'C2', label='C2')
+    ax.legend()
 
-* A high-level overview of your methodology and findings, including the 5 zipcodes you recommend investing in
-* A brief explanation of what metrics you defined as "best" in order complete this project
+demo('default')
+demo('seaborn')
+```
 
-As always, this prresentation should also:
+    Error in callback <function install_repl_displayhook.<locals>.post_execute at 0x000001981CBBB9D8> (for post_execute):
+    
 
-* Take no more than 5 minutes to present
-* Avoid technical jargon and explain results in a clear, actionable way for non-technical audiences.
 
-## Grading Rubric 
+    ---------------------------------------------------------------------------
 
-Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-4-project/blob/master/module4_project_rubric.pdf). _Note: On-campus students may have different requirements, please speak with your instructor._
+    KeyError                                  Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        173     try:
+    --> 174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    
+
+    KeyError: ('C10', None)
+
+    
+    During handling of the above exception, another exception occurred:
+    
+
+    ValueError                                Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\pyplot.py in post_execute()
+        107             def post_execute():
+        108                 if matplotlib.is_interactive():
+    --> 109                     draw_all()
+        110 
+        111             # IPython >= 2
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\_pylab_helpers.py in draw_all(cls, force)
+        130         for f_mgr in cls.get_all_fig_managers():
+        131             if force or f_mgr.canvas.figure.stale:
+    --> 132                 f_mgr.canvas.draw_idle()
+        133 
+        134 atexit.register(Gcf.destroy_all)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in draw_idle(self, *args, **kwargs)
+       1897         if not self._is_idle_drawing:
+       1898             with self._idle_draw_cntx():
+    -> 1899                 self.draw(*args, **kwargs)
+       1900 
+       1901     def draw_cursor(self, event):
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
+        400         toolbar = self.toolbar
+        401         try:
+    --> 402             self.figure.draw(self.renderer)
+        403             # A GUI class may be need to update a window using this draw, so
+        404             # don't forget to call the superclass.
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
+       1647 
+       1648             mimage._draw_list_compositing_images(
+    -> 1649                 renderer, self, artists, self.suppressComposite)
+       1650 
+       1651             renderer.close_group('figure')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
+       2626             renderer.stop_rasterizing()
+       2627 
+    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
+       2629 
+       2630         renderer.close_group('axes')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
+        725 
+        726             gc = renderer.new_gc()
+    --> 727             gc.set_foreground(textobj.get_color())
+        728             gc.set_alpha(textobj.get_alpha())
+        729             gc.set_url(textobj._url)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
+        966             self._rgb = fg
+        967         else:
+    --> 968             self._rgb = colors.to_rgba(fg)
+        969 
+        970     def set_joinstyle(self, js):
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
+        177         try:
+        178             _colors_full_map.cache[c, alpha] = rgba
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
+        218         except ValueError:
+        219             pass
+    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
+        221     # tuple color.
+        222     c = np.array(c)
+    
+
+    ValueError: Invalid RGBA argument: 'C10'
+
+
+
+    ---------------------------------------------------------------------------
+
+    KeyError                                  Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        173     try:
+    --> 174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    
+
+    KeyError: ('C10', None)
+
+    
+    During handling of the above exception, another exception occurred:
+    
+
+    ValueError                                Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+        339                 pass
+        340             else:
+    --> 341                 return printer(obj)
+        342             # Finally look for special method names
+        343             method = get_real_method(obj, self.print_method)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in <lambda>(fig)
+        239 
+        240     if 'png' in formats:
+    --> 241         png_formatter.for_type(Figure, lambda fig: print_figure(fig, 'png', **kwargs))
+        242     if 'retina' in formats or 'png2x' in formats:
+        243         png_formatter.for_type(Figure, lambda fig: retina_figure(fig, **kwargs))
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in print_figure(fig, fmt, bbox_inches, **kwargs)
+        123 
+        124     bytes_io = BytesIO()
+    --> 125     fig.canvas.print_figure(bytes_io, **kw)
+        126     data = bytes_io.getvalue()
+        127     if fmt == 'svg':
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in print_figure(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, **kwargs)
+       2047                         orientation=orientation,
+       2048                         dryrun=True,
+    -> 2049                         **kwargs)
+       2050                     renderer = self.figure._cachedRenderer
+       2051                     bbox_artists = kwargs.pop("bbox_extra_artists", None)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in print_png(self, filename_or_obj, *args, **kwargs)
+        508 
+        509         """
+    --> 510         FigureCanvasAgg.draw(self)
+        511         renderer = self.get_renderer()
+        512 
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
+        400         toolbar = self.toolbar
+        401         try:
+    --> 402             self.figure.draw(self.renderer)
+        403             # A GUI class may be need to update a window using this draw, so
+        404             # don't forget to call the superclass.
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
+       1647 
+       1648             mimage._draw_list_compositing_images(
+    -> 1649                 renderer, self, artists, self.suppressComposite)
+       1650 
+       1651             renderer.close_group('figure')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
+       2626             renderer.stop_rasterizing()
+       2627 
+    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
+       2629 
+       2630         renderer.close_group('axes')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
+        725 
+        726             gc = renderer.new_gc()
+    --> 727             gc.set_foreground(textobj.get_color())
+        728             gc.set_alpha(textobj.get_alpha())
+        729             gc.set_url(textobj._url)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
+        966             self._rgb = fg
+        967         else:
+    --> 968             self._rgb = colors.to_rgba(fg)
+        969 
+        970     def set_joinstyle(self, js):
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
+        177         try:
+        178             _colors_full_map.cache[c, alpha] = rgba
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
+        218         except ValueError:
+        219             pass
+    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
+        221     # tuple color.
+        222     c = np.array(c)
+    
+
+    ValueError: Invalid RGBA argument: 'C10'
+
+
+
+    <Figure size 300x300 with 1 Axes>
+
+
+
+    ---------------------------------------------------------------------------
+
+    KeyError                                  Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        173     try:
+    --> 174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    
+
+    KeyError: ('C10', None)
+
+    
+    During handling of the above exception, another exception occurred:
+    
+
+    ValueError                                Traceback (most recent call last)
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+        339                 pass
+        340             else:
+    --> 341                 return printer(obj)
+        342             # Finally look for special method names
+        343             method = get_real_method(obj, self.print_method)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in <lambda>(fig)
+        239 
+        240     if 'png' in formats:
+    --> 241         png_formatter.for_type(Figure, lambda fig: print_figure(fig, 'png', **kwargs))
+        242     if 'retina' in formats or 'png2x' in formats:
+        243         png_formatter.for_type(Figure, lambda fig: retina_figure(fig, **kwargs))
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in print_figure(fig, fmt, bbox_inches, **kwargs)
+        123 
+        124     bytes_io = BytesIO()
+    --> 125     fig.canvas.print_figure(bytes_io, **kw)
+        126     data = bytes_io.getvalue()
+        127     if fmt == 'svg':
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in print_figure(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, **kwargs)
+       2047                         orientation=orientation,
+       2048                         dryrun=True,
+    -> 2049                         **kwargs)
+       2050                     renderer = self.figure._cachedRenderer
+       2051                     bbox_artists = kwargs.pop("bbox_extra_artists", None)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in print_png(self, filename_or_obj, *args, **kwargs)
+        508 
+        509         """
+    --> 510         FigureCanvasAgg.draw(self)
+        511         renderer = self.get_renderer()
+        512 
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
+        400         toolbar = self.toolbar
+        401         try:
+    --> 402             self.figure.draw(self.renderer)
+        403             # A GUI class may be need to update a window using this draw, so
+        404             # don't forget to call the superclass.
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
+       1647 
+       1648             mimage._draw_list_compositing_images(
+    -> 1649                 renderer, self, artists, self.suppressComposite)
+       1650 
+       1651             renderer.close_group('figure')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
+       2626             renderer.stop_rasterizing()
+       2627 
+    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
+       2629 
+       2630         renderer.close_group('axes')
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
+        136     if not_composite or not has_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         # Composite any adjacent images together
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get_agg_filter() is not None:
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
+        725 
+        726             gc = renderer.new_gc()
+    --> 727             gc.set_foreground(textobj.get_color())
+        728             gc.set_alpha(textobj.get_alpha())
+        729             gc.set_url(textobj._url)
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
+        966             self._rgb = fg
+        967         else:
+    --> 968             self._rgb = colors.to_rgba(fg)
+        969 
+        970     def set_joinstyle(self, js):
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
+        174         rgba = _colors_full_map.cache[c, alpha]
+        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
+    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
+        177         try:
+        178             _colors_full_map.cache[c, alpha] = rgba
+    
+
+    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
+        218         except ValueError:
+        219             pass
+    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
+        221     # tuple color.
+        222     c = np.array(c)
+    
+
+    ValueError: Invalid RGBA argument: 'C10'
+
+
+
+    <Figure size 300x300 with 1 Axes>
+
+
+
+```python
+demo('seaborn')
+```
+
+
+![png](untitled_files/untitled_1_0.png)
+
+
+
+```python
+
+```
