@@ -16,7 +16,7 @@ The examined area is the Knoxville, TN, moderate sized city in eastern Tennessee
 
 The Zillow data range from the April 1996 to April 2018 of month median home sales form every zip code in the country.   I also supplimented with additional data from Zillow month sales data as well. Filtering by metro area, I analyze the zip code associated with Knoxville. See a glimpse of that data in the table below.
 
-![](images/DF_.png)
+![](images/DF_.PNG)
 
 <details><summary>Area Analysis</summary>
 
@@ -29,7 +29,7 @@ In 2017, the top ten zip code by number sales (597–997 sales) were spread amon
 Looking at pricing trends, most the zip codes follow the same general pattern. There is steady growth from the mid 1990's to the 2007–2008 recession where most pricing decreased . A pricing trough developed post 2009 and into the early 2010's followed by a return to steady growth to the present. 
 
 </details>
-<img src='images/Zip_Map.png'/>
+<img src='images/Zip_Map.PNG'/>
 
 <details><summary>Recession</summary>
 
