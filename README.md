@@ -29,7 +29,7 @@ In 2017, the top ten zip code by number sales (597–997 sales) were spread amon
 Looking at pricing trends, most the zip codes follow the same general pattern. There is steady growth from the mid 1990's to the 2007–2008 recession where most pricing decreased . A pricing trough developed post 2009 and into the early 2010's followed by a return to steady growth to the present. 
 
 </details>
-<img src='images/Zip_Map.PNG'/>
+<img src='images/Zip_Map.png'/>
 
 <details><summary>Recession</summary>
 
