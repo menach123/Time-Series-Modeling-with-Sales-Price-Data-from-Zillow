@@ -1,506 +1,92 @@
 
+## Return of Investment of Residental Housing Market in the Knoxville Metro Area
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-th = np.linspace(0, 2*np.pi, 128)
-
-
-def demo(sty):
-    mpl.style.use(sty)
-    fig, ax = plt.subplots(figsize=(3, 3))
-
-    ax.set_title('style: {!r}'.format(sty), color='C1')
-
-    ax.plot(th, np.cos(th), 'C1', label='C1')
-    ax.plot(th, np.sin(th), 'C2', label='C2')
-    ax.legend()
-
-demo('default')
-demo('seaborn')
-```
-
-    Error in callback <function install_repl_displayhook.<locals>.post_execute at 0x000001981CBBB9D8> (for post_execute):
-    
-
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        173     try:
-    --> 174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    
-
-    KeyError: ('C10', None)
-
-    
-    During handling of the above exception, another exception occurred:
-    
-
-    ValueError                                Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\pyplot.py in post_execute()
-        107             def post_execute():
-        108                 if matplotlib.is_interactive():
-    --> 109                     draw_all()
-        110 
-        111             # IPython >= 2
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\_pylab_helpers.py in draw_all(cls, force)
-        130         for f_mgr in cls.get_all_fig_managers():
-        131             if force or f_mgr.canvas.figure.stale:
-    --> 132                 f_mgr.canvas.draw_idle()
-        133 
-        134 atexit.register(Gcf.destroy_all)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in draw_idle(self, *args, **kwargs)
-       1897         if not self._is_idle_drawing:
-       1898             with self._idle_draw_cntx():
-    -> 1899                 self.draw(*args, **kwargs)
-       1900 
-       1901     def draw_cursor(self, event):
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
-        400         toolbar = self.toolbar
-        401         try:
-    --> 402             self.figure.draw(self.renderer)
-        403             # A GUI class may be need to update a window using this draw, so
-        404             # don't forget to call the superclass.
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
-       1647 
-       1648             mimage._draw_list_compositing_images(
-    -> 1649                 renderer, self, artists, self.suppressComposite)
-       1650 
-       1651             renderer.close_group('figure')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
-       2626             renderer.stop_rasterizing()
-       2627 
-    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
-       2629 
-       2630         renderer.close_group('axes')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
-        725 
-        726             gc = renderer.new_gc()
-    --> 727             gc.set_foreground(textobj.get_color())
-        728             gc.set_alpha(textobj.get_alpha())
-        729             gc.set_url(textobj._url)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
-        966             self._rgb = fg
-        967         else:
-    --> 968             self._rgb = colors.to_rgba(fg)
-        969 
-        970     def set_joinstyle(self, js):
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
-        177         try:
-        178             _colors_full_map.cache[c, alpha] = rgba
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
-        218         except ValueError:
-        219             pass
-    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
-        221     # tuple color.
-        222     c = np.array(c)
-    
-
-    ValueError: Invalid RGBA argument: 'C10'
-
-
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        173     try:
-    --> 174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    
-
-    KeyError: ('C10', None)
-
-    
-    During handling of the above exception, another exception occurred:
-    
-
-    ValueError                                Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
-        339                 pass
-        340             else:
-    --> 341                 return printer(obj)
-        342             # Finally look for special method names
-        343             method = get_real_method(obj, self.print_method)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in <lambda>(fig)
-        239 
-        240     if 'png' in formats:
-    --> 241         png_formatter.for_type(Figure, lambda fig: print_figure(fig, 'png', **kwargs))
-        242     if 'retina' in formats or 'png2x' in formats:
-        243         png_formatter.for_type(Figure, lambda fig: retina_figure(fig, **kwargs))
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in print_figure(fig, fmt, bbox_inches, **kwargs)
-        123 
-        124     bytes_io = BytesIO()
-    --> 125     fig.canvas.print_figure(bytes_io, **kw)
-        126     data = bytes_io.getvalue()
-        127     if fmt == 'svg':
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in print_figure(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, **kwargs)
-       2047                         orientation=orientation,
-       2048                         dryrun=True,
-    -> 2049                         **kwargs)
-       2050                     renderer = self.figure._cachedRenderer
-       2051                     bbox_artists = kwargs.pop("bbox_extra_artists", None)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in print_png(self, filename_or_obj, *args, **kwargs)
-        508 
-        509         """
-    --> 510         FigureCanvasAgg.draw(self)
-        511         renderer = self.get_renderer()
-        512 
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
-        400         toolbar = self.toolbar
-        401         try:
-    --> 402             self.figure.draw(self.renderer)
-        403             # A GUI class may be need to update a window using this draw, so
-        404             # don't forget to call the superclass.
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
-       1647 
-       1648             mimage._draw_list_compositing_images(
-    -> 1649                 renderer, self, artists, self.suppressComposite)
-       1650 
-       1651             renderer.close_group('figure')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
-       2626             renderer.stop_rasterizing()
-       2627 
-    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
-       2629 
-       2630         renderer.close_group('axes')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
-        725 
-        726             gc = renderer.new_gc()
-    --> 727             gc.set_foreground(textobj.get_color())
-        728             gc.set_alpha(textobj.get_alpha())
-        729             gc.set_url(textobj._url)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
-        966             self._rgb = fg
-        967         else:
-    --> 968             self._rgb = colors.to_rgba(fg)
-        969 
-        970     def set_joinstyle(self, js):
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
-        177         try:
-        178             _colors_full_map.cache[c, alpha] = rgba
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
-        218         except ValueError:
-        219             pass
-    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
-        221     # tuple color.
-        222     c = np.array(c)
-    
-
-    ValueError: Invalid RGBA argument: 'C10'
-
-
-
-    <Figure size 300x300 with 1 Axes>
-
-
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        173     try:
-    --> 174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    
-
-    KeyError: ('C10', None)
-
-    
-    During handling of the above exception, another exception occurred:
-    
-
-    ValueError                                Traceback (most recent call last)
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
-        339                 pass
-        340             else:
-    --> 341                 return printer(obj)
-        342             # Finally look for special method names
-        343             method = get_real_method(obj, self.print_method)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in <lambda>(fig)
-        239 
-        240     if 'png' in formats:
-    --> 241         png_formatter.for_type(Figure, lambda fig: print_figure(fig, 'png', **kwargs))
-        242     if 'retina' in formats or 'png2x' in formats:
-        243         png_formatter.for_type(Figure, lambda fig: retina_figure(fig, **kwargs))
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\IPython\core\pylabtools.py in print_figure(fig, fmt, bbox_inches, **kwargs)
-        123 
-        124     bytes_io = BytesIO()
-    --> 125     fig.canvas.print_figure(bytes_io, **kw)
-        126     data = bytes_io.getvalue()
-        127     if fmt == 'svg':
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in print_figure(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, **kwargs)
-       2047                         orientation=orientation,
-       2048                         dryrun=True,
-    -> 2049                         **kwargs)
-       2050                     renderer = self.figure._cachedRenderer
-       2051                     bbox_artists = kwargs.pop("bbox_extra_artists", None)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in print_png(self, filename_or_obj, *args, **kwargs)
-        508 
-        509         """
-    --> 510         FigureCanvasAgg.draw(self)
-        511         renderer = self.get_renderer()
-        512 
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backends\backend_agg.py in draw(self)
-        400         toolbar = self.toolbar
-        401         try:
-    --> 402             self.figure.draw(self.renderer)
-        403             # A GUI class may be need to update a window using this draw, so
-        404             # don't forget to call the superclass.
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\figure.py in draw(self, renderer)
-       1647 
-       1648             mimage._draw_list_compositing_images(
-    -> 1649                 renderer, self, artists, self.suppressComposite)
-       1650 
-       1651             renderer.close_group('figure')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\axes\_base.py in draw(self, renderer, inframe)
-       2626             renderer.stop_rasterizing()
-       2627 
-    -> 2628         mimage._draw_list_compositing_images(renderer, self, artists)
-       2629 
-       2630         renderer.close_group('axes')
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\image.py in _draw_list_compositing_images(renderer, parent, artists, suppress_composite)
-        136     if not_composite or not has_images:
-        137         for a in artists:
-    --> 138             a.draw(renderer)
-        139     else:
-        140         # Composite any adjacent images together
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\artist.py in draw_wrapper(artist, renderer, *args, **kwargs)
-         48                 renderer.start_filter()
-         49 
-    ---> 50             return draw(artist, renderer, *args, **kwargs)
-         51         finally:
-         52             if artist.get_agg_filter() is not None:
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\text.py in draw(self, renderer)
-        725 
-        726             gc = renderer.new_gc()
-    --> 727             gc.set_foreground(textobj.get_color())
-        728             gc.set_alpha(textobj.get_alpha())
-        729             gc.set_url(textobj._url)
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\backend_bases.py in set_foreground(self, fg, isRGBA)
-        966             self._rgb = fg
-        967         else:
-    --> 968             self._rgb = colors.to_rgba(fg)
-        969 
-        970     def set_joinstyle(self, js):
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in to_rgba(c, alpha)
-        174         rgba = _colors_full_map.cache[c, alpha]
-        175     except (KeyError, TypeError):  # Not in cache, or unhashable.
-    --> 176         rgba = _to_rgba_no_colorcycle(c, alpha)
-        177         try:
-        178             _colors_full_map.cache[c, alpha] = rgba
-    
-
-    ~\.conda\envs\learn-env\lib\site-packages\matplotlib\colors.py in _to_rgba_no_colorcycle(c, alpha)
-        218         except ValueError:
-        219             pass
-    --> 220         raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
-        221     # tuple color.
-        222     c = np.array(c)
-    
-
-    ValueError: Invalid RGBA argument: 'C10'
-
-
-
-    <Figure size 300x300 with 1 Axes>
-
-
-
-```python
-demo('seaborn')
-```
-
-
-![png](untitled_files/untitled_1_0.png)
-
-
-
-```python
-
-```
+### Overview
+
+For the Statistic Modeling Module project of my Flatiron Data Science program, I was giving data from [Zillow](https://www.zillow.com/research/data/) and was tasked with determining the top 5 zip code that would provide the best investment. The method for determining the best investment in was return on investment (ROI) after one year, a ratio of the increase in the value of a property over the initial purchase price.
+
+$$ROI  = (Value_{Final} - Value_{Initial})/ Value_{Initial}$$
+
+
+### Description of the Data and Location
+
+The examined area is the Knoxville, TN, moderate sized city in eastern Tennessee. The city is the thrid largest in the state behind Memphis and Nashville, and boasts University of Tennessee with it 28,321 enrollment. The Knoxvile Metro Area is the 63th largest in the country and a has experience over 5% population increase since the last census in 2010. 
+
+<img src='~/../images/Knoxville-Sevierville-La_Follette_CSA.png'>
+
+The Zillow data range from the April 1996 to April 2018 of month median home sales form every zip code in the country.   I also supplimented with additional data from Zillow month sales data as well. Filtering by metro area, I analyze the zip code associated with Knoxville. See a glimpse of that data in the table below.
+
+<img src='~/../images/DF_.png'>
+
+<details><summary>Area Analysis</summary>
+
+There are 57 zip codes in the area with 3 multiple zip code municipalities. Knoxville is the most with 14, and smaller cities in neighboring county make up the other two, Maryville (3), and Lenoir City (2). Maryville, the next largest, is located south of Knoxville and close to the airport and has a small liberal arts college that bares its name. Lenoir City is southwest and has a wide geography area, but it is quite narrow because city expansion along state route TN-321, a main thru fare with many businesses. The rest (38) have only one zip code. 
+
+<img src='~/../images/Muni.png'>
+
+In 2017, the top ten zip code by number sales (597–997 sales) were spread among four municipalities, Knoxville with seven of the top zip codes and Maryville, Oak Ridge, and Farragut with one each. Knoxville is by far the largest city in the area. Oak Ridge and Farragut are both suburbs west of Knoxville. Farragut is an affluent town in the same county as Knoxville (Knox County). Oak Ridge is farther northwest of Knoxville, and boasts large federal nuclear facilities and national laboratory that provides the major industry for the city and is important for the entire area.
+
+Looking at pricing trends, most the zip codes follow the same general pattern. There is steady growth from the mid 1990's to the 2007–2008 recession where most pricing decreased . A pricing trough developed post 2009 and into the early 2010's followed by a return to steady growth to the present. 
+
+</details>
+<img src='~/../images/Zip_Map.png'>
+
+<details><summary>Recession</summary>
+
+All the zip codes experienced a drop in median home price ranging from 6.8% to 36.6% with an average of 15.6% . Although there were zip codes that have not recovered from the recession, most zip codes saw an increase from pre-recession highs with the average zip code 15.7% higher post crash. Even the non recovering zip codes are see a uptrend in the last five years.
+
+</details>
+<img src='~/../images/Crash.png'>
+
+### Result
+
+<body>I completed to two analysis useing SAMIRAX Time Series Modeling from the Statsmodels python library. One was for all the zip codes and one that filter out the all zip code with less that 200 sales in 2017. </body>
+
+<details><summary>Initial Analysis</summary>
+
+Below is the projected sales for the top zip  code with ROI's ranging from 
+33.9% to 51.2% annual increase.
+
+<img src='~/../images/Table_Zip.png'>Table_Zip
+
+
+<img src='~/../images/Price_Projection.png'>
+
+After looking at the map of the zip codes and with my knowledge of the area, I noticed that they we are in rural areas. The areas were all on the outskirt in the city centers. As you can see below the select zip code had small numbers of annual sales. 
+
+<img src='~/../images/ROI_Sales.png'>
+</details>
+<img src='~/../images/Top_5_Zip_Code_Knoxville.png'>
+
+
+I decided to look at the areas to with more than 200 sales in 2017 as threshold. This way I could mark out more urban and suburban area for investment.
+
+<details><summary>Over 200 Analysis</summary>
+
+Below is the projected sales for the top zip  code with ROI's ranging from 
+13.1% to 20.1%.
+
+<img src='~/../images/Table_Zip200.png'>
+
+<img src='~/../images/Price_Projection200.png'>
+
+Zip codes selected were closer to populated areas. The area sales where spread out among the other zip code sales totals.
+
+<img src='~/../images/ROI_Sales200.png'>
+</details>
+<img src='~/../images/Top_5_Zip_Code_Knoxville_Under_200.png'>
+
+### Recommendation
+
+The above areas would make good investments. The first analysis showed very high grow with percent increases between 33.9% and  51.2%. Although there should be caution between of the rural nature of the area and low sales volume. The over 200 sales analysis shows a more established areas with impressive, but still good growth between 13.1% and  20.1%.
+
+Additional analysis can be. In particular looking at smaller geographical area than zip code. The division would include but not limited to:
+<ul>
+    <li>School Zones</li>
+    <li>Zoning Maps</li>
+    <li>Neighborhood Divisions</li>
+</ul>
+
+
+
+
