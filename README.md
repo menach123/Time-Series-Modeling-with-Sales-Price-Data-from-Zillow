@@ -12,11 +12,11 @@ $$ROI  = (Value_{Final} - Value_{Initial})/ Value_{Initial}$$
 
 The examined area is the Knoxville, TN, moderate sized city in eastern Tennessee. The city is the thrid largest in the state behind Memphis and Nashville, and boasts University of Tennessee with it 28,321 enrollment. The Knoxvile Metro Area is the 63th largest in the country and a has experience over 5% population increase since the last census in 2010. 
 
-<img src='~/../images/Knoxville-Sevierville-La_Follette_CSA.png'>
+<img src='images/Knoxville-Sevierville-La_Follette_CSA.png'>
 
 The Zillow data range from the April 1996 to April 2018 of month median home sales form every zip code in the country.   I also supplimented with additional data from Zillow month sales data as well. Filtering by metro area, I analyze the zip code associated with Knoxville. See a glimpse of that data in the table below.
 
-<img src='~/../images/DF_.png'>
+<img src='images/DF_.png'>
 
 <details><summary>Area Analysis</summary>
 
@@ -36,7 +36,7 @@ Looking at pricing trends, most the zip codes follow the same general pattern. T
 All the zip codes experienced a drop in median home price ranging from 6.8% to 36.6% with an average of 15.6% . Although there were zip codes that have not recovered from the recession, most zip codes saw an increase from pre-recession highs with the average zip code 15.7% higher post crash. Even the non recovering zip codes are see a uptrend in the last five years.
 
 </details>
-<img src='~/../images/Crash.png'>
+<img src='images/Crash.png'>
 
 ### Result
 
