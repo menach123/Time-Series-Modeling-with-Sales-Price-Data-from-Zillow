@@ -1,5 +1,5 @@
 
-## Return of Investment of Residental Housing Market in the Knoxville Metro Area
+## Return of Investment of Residential Housing Market in the Knoxville Metro Area
 
 ### Overview
 
